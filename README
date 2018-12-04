@@ -1,0 +1,173 @@
+README;
+
+
+
+INSTRUÇÕES BASICAS DA API REST NODE.JS
+
+    OBS: PACOTES UTILIZADOS PARA CONSTRUÇÃO DA API
+
+        *  body-parser = RESPONSAVEL PARA CONVERTER AS REQUISOÇOES EM FORMATOS JSON.
+        *  express.js =  RESPONSAVEL CONFIGURAR O PATH DA API E POR MONTAR A DIVISAO DA ESTRUTURA EM MODULOS.
+        *  mysql  =  RESPONSAVEL POR FAZER A CONEXAO COM BANCO DE DADOS MYSQL.
+        *  nodemon = USADO PARA DESENVOLVIMENTO AFIM EVITAR DE FICAR COMPILANDO A APLICAÇAO TODOS VEZ QUE ALGUM COMPONENTE É ALTERADO
+
+
+INSTRUTURA DO PROJETO
+
+
+{{ PROJETO }}
+
+        |----  app
+        |        |---- controllers
+        |        |       |-------- controller-conta.js
+        |        |        
+        |        |---- models
+        |        |       |-------- model.js
+        |        |
+        |        |---- routes
+        |                |-------- web.js
+        |
+        |---- config
+        |        |------ db.js
+        |        |------ server.js
+        |
+        |
+        |---- app,js
+        |
+        |
+        |---- package.json 
+        |
+        |---- package-lock.json
+        |
+        |
+        |---- SCRIPT BANCO MYSQL
+        |           |---------- CREATE_DB.mwb
+        |           |
+        |           |---------- CREATE_DB.mwb.bak
+        |           |   
+        |           |---------- SCRIPT PARA  CRIAR BANCO
+        |
+        |
+        |------- README.TXT        
+
+
+--------------------------------//-----------------------------------------
+
+
+
+
+
+BAIXANDO  INSTANDO OS COMPONENTES NPM PARA EXECUÇAO D APLICAÇÃO
+
+    * NAVEGUE ATÉ A PASTA PRINCIPAL DO PORJETO 
+        - ABRA O TERMINAL DO SISTEMA OPERACIONAL DIRETO NA PASTO DO PROJETO.
+        - EXECUTE O COMANDO   " npm install " E AGUARDE ATÉ FINALIZAR.
+
+EXECUTAR A API
+    * NO MESMO DIRETO ABRA O CMD E DIGITE "nodemon app.js" OU node "app.js", AGUARDE A SEGUINTE MENSAGEM NO TERMINAL "Servidor ligado na porta:3000"
+
+
+CRIANDO O BANCO DE DADOS EM MYSQL
+    1º PARA CRIAR O BANCO DE DADOS EXECUTE O SCRIPT  "SCRIPT PARA  CRIAR BANCO".
+    2º VERIFIQUE SE O BANCO FOI CRIADO E SEM NENHUM ERRO.
+
+
+CONFIGURANDO A APLICAÇAO COM O MYSQL
+    1º NAVEGUE ATÉ A PASTA 'CONFIG/db.jS.' A PASTA CONFIG NO MESMO DIRETORIO PRINCIPAL. 
+    2º CONFIGURE SEU USER E PASSWORD DO SEU BANCO DE DADOS.
+        OBS: O BANCO DE DADOS ESTÁ CONFIGURADO PARA LOCAL, CASO QUEIRA MUDAR PARA UM REMOTO BASTA ADICIONAR A PORTA EM HOST.
+
+    SE TUDO DER CERTO A API JÁ ESTARÁ FUNCIONANDO PERFEITAMENTE.
+
+
+ --------------------------------//-----------------------------------------      
+
+
+
+ TESTANDO AS ROTAS E OS PROCEDIMENTOS DA APLICAÇAO
+
+
+        METHOD: USADO PARA REQUISICAO DO RECURSO
+        PATH:   CAMINHO OU DIRETORIO DA API
+        JSON:   TIPO DE ESTRUTURA  NECESSARIO PARA O REQUISICÃO.
+        PARAMS: PARAMETROS USADOS PARA PASSAR VALOR AO RECURSO.
+
+
+    - LISTAR TODAS AS CONTAS CRIADAS
+        METHOD: GET
+        PATH: http://localhost:3000
+
+
+
+
+    -  INSERIR PESSOA E CONTA
+        METHOD: POST
+        PATH: http://localhost:3000/api/conta
+        FORMAT/JSON:   {
+                            "nome":"maria jose",
+                            "cpf":"08608103401",
+                            "dataNascimento":"1997/07/06"
+                        }
+    
+    
+    - INSERIR UM DEPOSITO PARA UMA CONTA    
+        METHOD: PUT
+        PATH: http://localhost:3000/api/conta
+        FORMAT/JSON:   	{
+                            "idConta":"1",
+                            "valor":89.00	
+                        }
+
+
+    - PEGAR O SALDO DE UMA CONTA   
+        METHOD: GET
+        PATH: http://localhost:3000/api/conta/1
+        PARAMS: IDCONTA CADASTRADA
+
+    
+
+
+    - REALIZAR SAQUE EM UMA CONTA   
+        METHOD: PUT
+        PATH: http://localhost:3000/api/saque
+        FORMAT/JSON:   {
+                            "idConta":"1",
+                            "valor":86.00	
+                        }
+
+
+
+
+    -REALIZAR BLOQUEIO EM UM CONTA
+        METHOD: GET
+        PATH: http://localhost:3000/api/bloqueio/1
+        PARAMS: IDCONTA PARA BLOQUEIO
+
+
+
+
+    -REALIZAR DESBLOQUEIO EM UM CONTA
+        METHOD: GET
+        PATH: http://localhost:3000/api/desbloqueio/1
+        PARAMS: IDCONTA PARA DESBLOQUEIO
+
+
+
+
+    -RECUPERAR EXTRATO DE UM CONTA
+        METHOD: GET
+        PATH: http://localhost:3000/api/extrato/1
+        PARAMS: IDCONTA PARA EMITIR EXTRATO
+
+
+
+-------------------------------------------------------------
+
+Com isso finalizo meu projeto, utilizando alguns recurso importantes, 
+afim de que alguem posso aprender um pouco sobre node.js 
+e criticar oque ainda falta de fato a ser feito. 
+Projeto feito em pouco tem, porém de muito aprendizado.
+
+
+OBS: Não utilizei nenhum metodo de autenticaçao de usuario por resquest 
+pois como é uma api para analise não vejo a necessidade de usar o pacote npm JWT.
